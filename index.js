@@ -15,9 +15,7 @@ var reset = '\u001b[0G\u001b[2K\u001b[0G';
  */
 
 globalCtx.console.log = function(){
-  var args  = Array.prototype.slice.call(arguments,0);
-  args.unshift(reset);
-
+  var args = unFormat(arguments);
   Function.prototype.apply.call(Ti.API.info, console, args);
 };
 
@@ -27,9 +25,7 @@ globalCtx.console.log = function(){
  */
 
 globalCtx.console.debug = function(){
-  var args  = Array.prototype.slice.call(arguments,0);
-  args.unshift(reset);
-
+  var args = unFormat(arguments);
   Function.prototype.apply.call(Ti.API.debug, console, args);
 };
 
@@ -39,9 +35,7 @@ globalCtx.console.debug = function(){
  */
 
 globalCtx.console.error = function(){
-  var args  = Array.prototype.slice.call(arguments,0);
-  args.unshift(reset);
-
+  var args = unFormat(arguments);
   Function.prototype.apply.call(Ti.API.error, console, args);
 };
 
@@ -51,9 +45,7 @@ globalCtx.console.error = function(){
  */
 
 globalCtx.console.trace = function(){
-  var args  = Array.prototype.slice.call(arguments,0);
-  args.unshift(reset);
-
+  var args = unFormat(arguments);
   Function.prototype.apply.call(Ti.API.trace, console, args);
 };
 
@@ -63,8 +55,18 @@ globalCtx.console.trace = function(){
  */
 
 globalCtx.console.warn = function(){
-  var args  = Array.prototype.slice.call(arguments,0);
-  args.unshift(reset);
-
+  var args = unFormat(arguments);
   Function.prototype.apply.call(Ti.API.warn, console, args);
 };
+
+/**
+ * [unFormat description]
+ * @param  {[type]} rawArgs [description]
+ * @return {[type]}         [description]
+ */
+
+function unFormat(rawArgs){
+  var args  = Array.prototype.slice.call(rawArgs,0);
+  args[0] = reset + (args[0] || '').toString().split(/(?:\r\n|\n|\r)/).join('\n' + reset);
+  return args;
+}
