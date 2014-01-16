@@ -1,0 +1,14 @@
+{
+  "name": "console",
+  "repo": "tipm/console",
+  "description": "Cleaner Titanium console output",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
