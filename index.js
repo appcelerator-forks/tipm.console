@@ -5,7 +5,11 @@ var globalCtx = (function(){ return this; })();
 
 // reset the global console object
 
+var ticonsole = globalCtx.console;
+
 globalCtx.console = {};
+
+// ascii line reset
 
 var reset = '\u001b[0G\u001b[2K\u001b[0G';
 
@@ -16,7 +20,7 @@ var reset = '\u001b[0G\u001b[2K\u001b[0G';
 
 globalCtx.console.log = function(){
   var args = unFormat(arguments);
-  Function.prototype.apply.call(Ti.API.info, console, args);
+  Function.prototype.apply.call(ticonsole.info, console, args);
 };
 
 /**
@@ -26,7 +30,7 @@ globalCtx.console.log = function(){
 
 globalCtx.console.debug = function(){
   var args = unFormat(arguments);
-  Function.prototype.apply.call(Ti.API.debug, console, args);
+  Function.prototype.apply.call(ticonsole.debug, console, args);
 };
 
 /**
@@ -36,7 +40,7 @@ globalCtx.console.debug = function(){
 
 globalCtx.console.error = function(){
   var args = unFormat(arguments);
-  Function.prototype.apply.call(Ti.API.error, console, args);
+  Function.prototype.apply.call(ticonsole.error, console, args);
 };
 
 /**
@@ -46,7 +50,7 @@ globalCtx.console.error = function(){
 
 globalCtx.console.trace = function(){
   var args = unFormat(arguments);
-  Function.prototype.apply.call(Ti.API.trace, console, args);
+  Function.prototype.apply.call(ticonsole.trace, console, args);
 };
 
 /**
@@ -56,7 +60,7 @@ globalCtx.console.trace = function(){
 
 globalCtx.console.warn = function(){
   var args = unFormat(arguments);
-  Function.prototype.apply.call(Ti.API.warn, console, args);
+  Function.prototype.apply.call(ticonsole.warn, console, args);
 };
 
 /**
