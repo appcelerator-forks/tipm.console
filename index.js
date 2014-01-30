@@ -70,7 +70,12 @@ globalCtx.console.warn = function(){
  */
 
 function unFormat(rawArgs){
-  var args  = Array.prototype.slice.call(rawArgs,0);
-  args[0] = reset + (args[0] || '').toString().split(/(?:\r\n|\n|\r)/).join('\n' + reset);
+  var delim = '<<DELIM>>';
+  var args  = (Array.prototype.slice.call(rawArgs,0)).join(delim);
+
+  args = (reset + args)
+    .split(/(?:\r\n|\n|\r)/)
+    .join('\n' + reset)
+    .split(delim);
   return args;
 }
